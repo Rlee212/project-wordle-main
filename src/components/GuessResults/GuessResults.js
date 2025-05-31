@@ -9,9 +9,7 @@ function dynamicCells (value, answer) {
   return (
     <p className="guess">
       {range(5).map((num) => (
-        <span key={num} className="cell">
-          {value ? value[num] : undefined}
-        </span>
+        cell(num,result ? result[num].letter : undefined,result ? result[num].status : undefined)
       ))}
     </p>
   );
@@ -21,9 +19,9 @@ function dynamicCells (value, answer) {
 
 
 
-function Cell( letter, status ) {
+function cell( num, letter, status ) {
   const className = status ? `cell ${status}` : 'cell';
-  return <span className={className}>{letter}</span>;
+  return <span key={num} className={className}>{letter}</span>;
 }
 
 function GuessResults({ guesses, answer }) {
