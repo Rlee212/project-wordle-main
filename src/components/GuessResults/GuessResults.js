@@ -1,7 +1,33 @@
 import React from 'react';
 
-function GuessResults() {
-  return <div class="guess-results">
+import { range } from '../../utils';
+import { checkGuess } from '../../game-helpers'
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+
+function dynamicCells (value, answer) {
+  const result = checkGuess(value, answer);
+  return (
+    <p className="guess">
+      {range(5).map((num) => (
+        <span key={num} className="cell">
+          {value ? value[num] : undefined}
+        </span>
+      ))}
+    </p>
+  );
+}
+
+
+
+
+
+function Cell( letter, status ) {
+  const className = status ? `cell ${status}` : 'cell';
+  return <span className={className}>{letter}</span>;
+}
+
+function GuessResults({ guesses, answer }) {
+  /*return <div class="guess-results">
   <p class="guess">
     <span class="cell">H</span>
     <span class="cell">E</span>
@@ -37,7 +63,16 @@ function GuessResults() {
     <span class="cell"></span>
     <span class="cell"></span>
   </p>
-</div>;
+</div>;*/
+
+return (
+    <div className="guess-results">
+      {range(NUM_OF_GUESSES_ALLOWED).map((num) => (
+        dynamicCells (guesses[num], answer)
+      ))}
+    </div>
+  );
+
 }
 
 export default GuessResults;

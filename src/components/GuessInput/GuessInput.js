@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function GuessInput() {
+function GuessInput({ handleSubmitGuess }) {
 
   const [guess, setGuess] = React.useState('');
   const [firstSubmittedGuess, setFirstSubmittedGuess] = React.useState('');
@@ -10,18 +10,18 @@ function GuessInput() {
     event.preventDefault();
     if (guess.length==5){
       setFirstSubmittedGuess(guess);
+      handleSubmitGuess(guess);
     }
     else if (guess.length<5){
       window.alert("Not enough letters")
     }
-
-
     setGuess('');
 
   }
 
   useEffect(() => {
     console.log("Guess:"+ firstSubmittedGuess)
+
   }, [firstSubmittedGuess]);
 
 
