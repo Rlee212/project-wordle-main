@@ -16,9 +16,6 @@ function dynamicCells (value, answer) {
 }
 
 
-
-
-
 function cell( num, letter, status ) {
   const className = status ? `cell ${status}` : 'cell';
   return <span key={num} className={className}>{letter}</span>;
